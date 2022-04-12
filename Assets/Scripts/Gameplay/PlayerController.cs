@@ -32,12 +32,13 @@ public class PlayerController : MonoBehaviour
 		{
 			isHolding = false;
 
+			// Tap
 			if (holdingTime < holdingTimeThreshold)
-				Player.Instance.SwitchBlob();
+				Player.Instance.BlobController.SwitchBlob();
 
 			holdingTime = 0;
 
-			// Reset movement
+			// Stop left/right movement on release
 			Vector3 velocity = movement.Rb.velocity;
 			velocity.x = 0;
 			movement.Rb.velocity = velocity;

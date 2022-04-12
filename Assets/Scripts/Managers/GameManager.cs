@@ -8,4 +8,14 @@ public class GameManager : Singleton<GameManager>
 	{
 		MainCamera = Camera.main;
 	}
+
+	public void GameSuccess()
+	{
+		
+	}
+	
+	public void GameFail()
+	{
+		
+	}
 }
