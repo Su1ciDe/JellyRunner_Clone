@@ -4,10 +4,17 @@ public class PlayerMovement : MonoBehaviour
 {
 	public bool CanMove { get; set; } = true;
 
-	[SerializeField] private float moveSpeed;
+	public Rigidbody Rb { get; private set; }
+
+	[SerializeField] private float moveSpeed = 500;
 	[SerializeField] private float moveSpeedMultiplier = 1;
 
-	private void Update()
+	private void Awake()
+	{
+		Rb = GetComponent<Rigidbody>();
+	}
+
+	private void FixedUpdate()
 	{
 		Move();
 	}
@@ -15,6 +22,6 @@ public class PlayerMovement : MonoBehaviour
 	private void Move()
 	{
 		if (!CanMove) return;
-		transform.Translate(moveSpeed * moveSpeedMultiplier * Time.deltaTime * Vector3.forward);
+		Rb.velocity = moveSpeed * moveSpeedMultiplier * Time.fixedDeltaTime * Vector3.forward;
 	}
 }
