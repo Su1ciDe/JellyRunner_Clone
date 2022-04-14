@@ -38,9 +38,9 @@ public class BlobController : MonoBehaviour
 		}
 	}
 
-	public void AddBlob()
+	public void AddBlob(int count = 1)
 	{
-		BlobCount++;
+		BlobCount += count;
 
 		BigBlob.ChangeSize(BlobCount);
 
@@ -60,22 +60,24 @@ public class BlobController : MonoBehaviour
 			CanSwitchBlob = true;
 	}
 
-	public void RemoveBlob()
+	public void RemoveBlob(int count = 1)
 	{
-		BlobCount--;
+		BlobCount -= count;
 
 		BigBlob.ChangeSize(BlobCount);
-		
-		var smallBlob = SmallBlobs[SmallBlobs.Count - 1];
-		SmallBlobs.Remove(smallBlob);
-		Destroy(smallBlob.gameObject);
+
+		for (int i = 0; i < count; i++)
+		{
+			var smallBlob = SmallBlobs[SmallBlobs.Count - 1];
+			SmallBlobs.Remove(smallBlob);
+			Destroy(smallBlob.gameObject);
+		}
 
 		if (IsBigBlob)
 		{
 			if (BlobCount.Equals(1))
 			{
 				CanSwitchBlob = false;
-				//
 			}
 		}
 		else

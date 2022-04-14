@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,7 +11,10 @@ public class Player : Singleton<Player>
 	public BlobController BlobController { get; private set; }
 
 	public event UnityAction OnCollectCoin;
-	
+
+	private bool isInvulnerable;
+	private readonly float invulnerableTime = 1;
+
 	private void Awake()
 	{
 		PlayerController = GetComponent<PlayerController>();
@@ -24,9 +28,23 @@ public class Player : Singleton<Player>
 		{
 			AddMoney(coin.MoneyValue);
 			coin.OnCollect(this);
-			
+
 			OnCollectCoin?.Invoke();
 		}
+
+		if (!isInvulnerable && other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Obstacle obstacle))
+		{
+			obstacle.React();
+			StartCoroutine(Invulnerable());
+		}
+	}
+
+
+	private IEnumerator Invulnerable()
+	{
+		isInvulnerable = true;
+		yield return new WaitForSeconds(invulnerableTime);
+		isInvulnerable = false;
 	}
 
 	public void AddMoney(int value)
