@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float moveSpeed = 500;
 	[SerializeField] private float moveSpeedMultiplier = 1;
 
+	private Vector3 velocity;
+
 	private void Awake()
 	{
 		Rb = GetComponent<Rigidbody>();
@@ -22,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
 	private void Move()
 	{
 		if (!CanMove) return;
-		Rb.velocity = moveSpeed * moveSpeedMultiplier * Time.fixedDeltaTime * Vector3.forward;
+		velocity = Rb.velocity;
+		velocity.z = moveSpeed * moveSpeedMultiplier * Time.fixedDeltaTime;
+		Rb.velocity = velocity;
 	}
 }

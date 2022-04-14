@@ -2,13 +2,8 @@
 
 public abstract class Blob : MonoBehaviour
 {
-	protected Animator Animator;
-
-	public virtual void Awake()
-	{
-		Animator = GetComponentInChildren<Animator>(true);
-	}
-
+	[SerializeField] protected Animator Animator;
+	
 	public void Anim_SetBool(int parameter, bool value)
 	{
 		Animator.SetBool(parameter, value);

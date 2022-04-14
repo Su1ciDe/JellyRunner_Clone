@@ -91,7 +91,7 @@ public class BlobController : MonoBehaviour
 
 	private void AddSmallBlob(bool isActive = true)
 	{
-		var newSmallBlob = Instantiate(SmallBlobs[0], SmallBlobs[0].transform.parent, true);
+		var newSmallBlob = Instantiate(SmallBlobs[0], SmallBlobs[0].transform.parent);
 		newSmallBlob.gameObject.SetActive(isActive);
 		newSmallBlob.Anim_SetBool(runAnim, isActive);
 		SmallBlobs.Add(newSmallBlob);
