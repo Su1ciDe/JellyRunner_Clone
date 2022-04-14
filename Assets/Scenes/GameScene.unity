@@ -293,7 +293,7 @@ BoxCollider:
   m_GameObject: {fileID: 702546490}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -744,6 +744,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4403659949916345882, guid: 9c987f175576fd24daf215282e4f0c4f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799250826827236864, guid: 9c987f175576fd24daf215282e4f0c4f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4799250827197515513, guid: 9c987f175576fd24daf215282e4f0c4f, type: 3}
       propertyPath: m_Name
       value: Player
@@ -790,6 +798,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4799250827197515519, guid: 9c987f175576fd24daf215282e4f0c4f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070966254862921455, guid: 9c987f175576fd24daf215282e4f0c4f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814387674631135187, guid: 9c987f175576fd24daf215282e4f0c4f, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -896,11 +912,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7247562103963030167, guid: 4b6ea44cb14db3242a2bd37a4e3f1da5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000016718085
+      value: 0.000000016704016
       objectReference: {fileID: 0}
     - target: {fileID: 7247562103963030167, guid: 4b6ea44cb14db3242a2bd37a4e3f1da5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000041308885
+      value: -0.0000000041274117
       objectReference: {fileID: 0}
     - target: {fileID: 7247562103963030167, guid: 4b6ea44cb14db3242a2bd37a4e3f1da5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

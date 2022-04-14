@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : Singleton<Player>
 {
@@ -8,6 +9,8 @@ public class Player : Singleton<Player>
 	public PlayerController PlayerController { get; private set; }
 	public BlobController BlobController { get; private set; }
 
+	public event UnityAction OnCollectCoin;
+	
 	private void Awake()
 	{
 		PlayerController = GetComponent<PlayerController>();
@@ -21,6 +24,8 @@ public class Player : Singleton<Player>
 		{
 			AddMoney(coin.MoneyValue);
 			coin.OnCollect(this);
+			
+			OnCollectCoin?.Invoke();
 		}
 	}
 

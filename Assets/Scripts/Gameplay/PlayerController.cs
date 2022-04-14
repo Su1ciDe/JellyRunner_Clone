@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 	private float mouseDelta;
 
 	[Space]
-	[SerializeField] private float holdingTimeThreshold = .05f;
+	[SerializeField] private float holdingTimeThreshold = .1f;
 	private float holdingTime;
 
 	private PlayerMovement movement => Player.Instance.PlayerMovement;
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Drag()
 	{
-		if (!isHolding || holdingTime < holdingTimeThreshold) return;
+		if (!isHolding || holdingTime < holdingTimeThreshold / 2f) return;
 
 		mouseDelta = Input.mousePosition.x - previousMousePosX;
 		Vector3 velocity = movement.Rb.velocity;

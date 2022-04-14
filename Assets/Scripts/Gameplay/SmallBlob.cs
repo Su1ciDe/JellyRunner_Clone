@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SmallBlob : MonoBehaviour
+public class SmallBlob : Blob
 {
 	
 }
