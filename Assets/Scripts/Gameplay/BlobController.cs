@@ -62,6 +62,7 @@ public class BlobController : MonoBehaviour
 
 	public void RemoveBlob(int count = 1)
 	{
+		Debug.Log("selam");
 		BlobCount -= count;
 
 		BigBlob.ChangeSize(BlobCount);

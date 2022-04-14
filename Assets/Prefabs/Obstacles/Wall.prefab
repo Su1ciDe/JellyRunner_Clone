@@ -1519,7 +1519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoesDamageToBigBlob: 0
-  DoesDamageToSmallBlob: 1
+  DoesDamageToSmallBlob: 0
   wall: {fileID: 6234054368881655670}
   explosionForce: 2000
   explosionRadius: 10
