@@ -219,3 +219,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoneyValue: 1
+  coinT: {fileID: 3213717895326004623}

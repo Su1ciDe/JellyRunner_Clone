@@ -16,7 +16,7 @@ public class Player : Singleton<Player>
 	public PlayerController PlayerController { get; private set; }
 	public BlobController BlobController { get; private set; }
 
-	public event UnityAction<Vector3> OnCollectCoin;
+	public static event UnityAction<Vector3> OnCollectCoin;
 
 	private bool isInvulnerable;
 	private readonly float invulnerableTime = 1;
@@ -67,12 +67,20 @@ public class Player : Singleton<Player>
 	{
 		PlayerController.CanPlay = false;
 		PlayerMovement.CanMove = false;
+		PlayerMovement.Rb.velocity = Vector3.zero;
+		BlobController.BigBlob.Anim_SetBool(BlobController.RunAnim, false);
+		foreach (SmallBlob smallBlob in BlobController.SmallBlobs)
+			smallBlob.Anim_SetBool(BlobController.RunAnim, false);
 	}
 
 	private void OnLevelFail()
 	{
 		PlayerController.CanPlay = false;
 		PlayerMovement.CanMove = false;
+		PlayerMovement.Rb.velocity = Vector3.zero;
+		BlobController.BigBlob.Anim_SetBool(BlobController.RunAnim, false);
+		foreach (SmallBlob smallBlob in BlobController.SmallBlobs)
+			smallBlob.Anim_SetBool(BlobController.RunAnim, false);
 	}
 
 	private IEnumerator Invulnerable()

@@ -14,12 +14,12 @@ public class MoneyUI : MonoBehaviour
 
 	private void OnEnable()
 	{
-		Player.Instance.OnCollectCoin += OnMoneyChanged;
+		Player.OnCollectCoin += OnMoneyChanged;
 	}
 
 	private void OnDisable()
 	{
-		Player.Instance.OnCollectCoin -= OnMoneyChanged;
+		Player.OnCollectCoin -= OnMoneyChanged;
 	}
 
 	private void OnMoneyChanged(Vector3 animPos = default)

@@ -12,7 +12,7 @@ public class Fan : Obstacle
 
 	private readonly int frontFlipAnim = Animator.StringToHash("FrontFlip");
 
-	
+
 	private void Start()
 	{
 		Motion();
@@ -33,5 +33,10 @@ public class Fan : Obstacle
 		Player.Instance.PlayerMovement.Rb.AddForce(upForce * Vector3.up, ForceMode.Impulse);
 		foreach (SmallBlob smallBlob in Player.Instance.BlobController.SmallBlobs)
 			smallBlob.Anim_SetTrigger(frontFlipAnim);
+	}
+
+	private void OnDestroy()
+	{
+		movingPart.DOKill();
 	}
 }

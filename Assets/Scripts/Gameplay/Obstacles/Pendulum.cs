@@ -25,4 +25,9 @@ public class Pendulum : Obstacle
 		transform.eulerAngles = -swingingAngle * Vector3.forward;
 		transform.DORotate(swingingAngle * Vector3.forward, swingingTime).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
 	}
+
+	private void OnDestroy()
+	{
+		transform.DOKill();
+	}
 }

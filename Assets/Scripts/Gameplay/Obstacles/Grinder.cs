@@ -24,4 +24,9 @@ public class Grinder : Obstacle
 	protected override void ReactToSmallBlob()
 	{
 	}
+
+	private void OnDestroy()
+	{
+		movingPart.DOKill();
+	}
 }

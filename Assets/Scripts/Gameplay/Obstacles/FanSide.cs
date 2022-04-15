@@ -33,4 +33,9 @@ public class FanSide : Obstacle
 			Player.Instance.BlobController.RemoveBlob();
 		});
 	}
+
+	private void OnDestroy()
+	{
+		movingPart.DOKill();
+	}
 }

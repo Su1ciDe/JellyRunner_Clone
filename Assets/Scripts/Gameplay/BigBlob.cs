@@ -3,20 +3,19 @@ using UnityEngine;
 
 public class BigBlob : Blob
 {
-	public int Size { get; set; }
+	public float Size { get; private set; }
 
 	public void ChangeSize(int size, bool isAnimated = true)
 	{
-		Size = size;
+		Size = size / 2f;
 		if (isAnimated)
 		{
 			transform.DOComplete();
-			transform.DOScale(Size / 2f, .5f).SetEase(Ease.OutElastic);
+			transform.DOScale(Size, .5f).SetEase(Ease.OutElastic);
 		}
 		else
 		{
-			transform.localScale = (Size / 2f) * Vector3.one;
+			transform.localScale = Size * Vector3.one;
 		}
 	}
-
 }

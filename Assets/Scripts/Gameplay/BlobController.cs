@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,9 +13,9 @@ public class BlobController : MonoBehaviour
 	public List<SmallBlob> SmallBlobs { get; set; } = new List<SmallBlob>();
 	public BigBlob BigBlob { get; set; }
 
-	private readonly int runAnim = Animator.StringToHash("Running");
+	public readonly int RunAnim = Animator.StringToHash("Running");
 
-	public event UnityAction OnCollectBlob;
+	public static event UnityAction OnCollectBlob;
 
 	private void Awake()
 	{
@@ -95,7 +96,7 @@ public class BlobController : MonoBehaviour
 	{
 		var newSmallBlob = Instantiate(SmallBlobs[0], SmallBlobs[0].transform.parent);
 		newSmallBlob.gameObject.SetActive(isActive);
-		newSmallBlob.Anim_SetBool(runAnim, isActive);
+		newSmallBlob.Anim_SetBool(RunAnim, isActive);
 		SmallBlobs.Add(newSmallBlob);
 	}
 
@@ -107,23 +108,23 @@ public class BlobController : MonoBehaviour
 		if (IsBigBlob)
 		{
 			BigBlob.gameObject.SetActive(true);
-			BigBlob.Anim_SetBool(runAnim, true);
+			BigBlob.Anim_SetBool(RunAnim, true);
 
 			foreach (SmallBlob smallBlob in SmallBlobs)
 			{
 				smallBlob.gameObject.SetActive(false);
-				smallBlob.Anim_SetBool(runAnim, false);
+				smallBlob.Anim_SetBool(RunAnim, false);
 			}
 		}
 		else
 		{
-			BigBlob.Anim_SetBool(runAnim, false);
+			BigBlob.Anim_SetBool(RunAnim, false);
 			BigBlob.gameObject.SetActive(false);
 
 			foreach (SmallBlob smallBlob in SmallBlobs)
 			{
 				smallBlob.gameObject.SetActive(true);
-				smallBlob.Anim_SetBool(runAnim, true);
+				smallBlob.Anim_SetBool(RunAnim, true);
 			}
 
 			ArrangeSmallBlobs();

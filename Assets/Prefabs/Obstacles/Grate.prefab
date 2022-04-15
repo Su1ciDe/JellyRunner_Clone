@@ -123,8 +123,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 7.4941845, z: 18.720116}
-  m_Center: {x: 0, y: 3.2470922, z: 9.360058}
+  m_Size: {x: 20, y: 5.4941845, z: 18.720116}
+  m_Center: {x: 0, y: 2.2470922, z: 9.360058}
 --- !u!1 &3499523504497146182
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,6 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DoesDamageToBigBlob: 0
   DoesDamageToSmallBlob: 0
+  Damage: 1
   grateCollider: {fileID: 3499523505697280321}
 --- !u!1 &3499523504976729831
 GameObject:

@@ -35,8 +35,9 @@ public class LevelManager : Singleton<LevelManager>
 		OnLevelFail?.Invoke();
 	}
 
+	[ContextMenu("asd")]
 	public void LoadLevel()
 	{
-		SceneManager.LoadScene(LevelSO.Scenes[CurrentLevel].ToString());
+		SceneManager.LoadScene(LevelSO.Scenes[CurrentLevelIndex].name);
 	}
 }
