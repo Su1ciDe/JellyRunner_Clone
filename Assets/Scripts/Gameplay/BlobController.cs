@@ -62,11 +62,10 @@ public class BlobController : MonoBehaviour
 
 	public void RemoveBlob(int count = 1)
 	{
-		Debug.Log("selam");
+		count = count > BlobCount ? BlobCount : count;
 		BlobCount -= count;
 
 		BigBlob.ChangeSize(BlobCount);
-
 		for (int i = 0; i < count; i++)
 		{
 			var smallBlob = SmallBlobs[SmallBlobs.Count - 1];

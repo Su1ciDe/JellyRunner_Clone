@@ -34,7 +34,6 @@ public class Player : Singleton<Player>
 
 		if (!isInvulnerable && other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Obstacle obstacle))
 		{
-			Debug.Log(other.gameObject.name);
 			StartCoroutine(Invulnerable());
 			obstacle.React();
 		}

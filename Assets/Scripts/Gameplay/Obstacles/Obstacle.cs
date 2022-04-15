@@ -4,6 +4,7 @@ public abstract class Obstacle : MonoBehaviour
 {
 	public bool DoesDamageToBigBlob;
 	public bool DoesDamageToSmallBlob;
+	public int Damage = 1;
 
 	public virtual void React()
 	{
@@ -11,13 +12,13 @@ public abstract class Obstacle : MonoBehaviour
 		{
 			ReactToBigBlob();
 			if (DoesDamageToBigBlob)
-				Player.Instance.BlobController.RemoveBlob();
+				Player.Instance.BlobController.RemoveBlob(Damage);
 		}
 		else
 		{
 			ReactToSmallBlob();
 			if (DoesDamageToSmallBlob)
-				Player.Instance.BlobController.RemoveBlob();
+				Player.Instance.BlobController.RemoveBlob(Damage);
 		}
 	}
 
