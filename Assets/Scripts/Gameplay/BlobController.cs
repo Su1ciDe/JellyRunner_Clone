@@ -87,7 +87,7 @@ public class BlobController : MonoBehaviour
 
 		if (BlobCount <= 0)
 		{
-			GameManager.Instance.GameFail();
+			LevelManager.Instance.GameFail();
 		}
 	}
 

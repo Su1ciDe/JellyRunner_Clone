@@ -2,6 +2,7 @@
 
 public class PlayerController : MonoBehaviour
 {
+	public bool CanPlay { get; set; }
 	private bool isHolding;
 
 	[SerializeField] private float dragMultiplier;
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
+		if (!CanPlay) return;
 		if (Input.GetMouseButton(0))
 		{
 			if (isHolding)
@@ -52,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Drag()
 	{
+		if(!CanPlay) return;
 		if (!isHolding || holdingTime < holdingTimeThreshold / 2f) return;
 
 		mouseDelta = Input.mousePosition.x - previousMousePosX;

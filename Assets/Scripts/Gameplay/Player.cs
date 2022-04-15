@@ -4,7 +4,12 @@ using UnityEngine.Events;
 
 public class Player : Singleton<Player>
 {
-	public int Money { get; private set; }
+	public static int Money
+	{
+		get => PlayerPrefs.GetInt("Money", 0);
+		set => PlayerPrefs.SetInt("Money", value);
+	}
+	public int CollectedMoney { get; private set; } = 0;
 
 	public PlayerMovement PlayerMovement { get; private set; }
 	public PlayerController PlayerController { get; private set; }
@@ -39,6 +44,37 @@ public class Player : Singleton<Player>
 		}
 	}
 
+	private void OnEnable()
+	{
+		LevelManager.OnLevelStart += OnLevelStart;
+		LevelManager.OnLevelSuccess += OnLevelSuccess;
+		LevelManager.OnLevelFail += OnLevelFail;
+	}
+
+	private void OnDisable()
+	{
+		LevelManager.OnLevelStart -= OnLevelStart;
+		LevelManager.OnLevelSuccess -= OnLevelSuccess;
+		LevelManager.OnLevelFail -= OnLevelFail;
+	}
+
+	private void OnLevelStart()
+	{
+		PlayerController.CanPlay = true;
+		PlayerMovement.CanMove = true;
+	}
+
+	private void OnLevelSuccess()
+	{
+		PlayerController.CanPlay = false;
+		PlayerMovement.CanMove = false;
+	}
+
+	private void OnLevelFail()
+	{
+		PlayerController.CanPlay = false;
+		PlayerMovement.CanMove = false;
+	}
 
 	private IEnumerator Invulnerable()
 	{
@@ -49,6 +85,11 @@ public class Player : Singleton<Player>
 
 	public void AddMoney(int value)
 	{
+		CollectedMoney += value;
 		Money += value;
+	}
+
+	public void FinishLine()
+	{
 	}
 }

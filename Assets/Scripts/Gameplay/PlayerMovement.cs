@@ -2,7 +2,7 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-	public bool CanMove { get; set; } = true;
+	public bool CanMove { get; set; }
 
 	public Rigidbody Rb { get; private set; }
 

@@ -28,5 +28,9 @@ public class FanSide : Obstacle
 	{
 		// Fly
 		Player.Instance.PlayerMovement.Rb.AddForce(force * transform.right, ForceMode.Impulse);
+		Player.Instance.BlobController.SmallBlobs[Player.Instance.BlobController.SmallBlobs.Count - 1].transform.DOLocalJump(15 * transform.right, 1, 1, .5f).OnComplete(() =>
+		{
+			Player.Instance.BlobController.RemoveBlob();
+		});
 	}
 }

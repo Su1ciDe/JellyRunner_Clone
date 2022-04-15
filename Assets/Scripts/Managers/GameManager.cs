@@ -8,14 +8,4 @@ public class GameManager : Singleton<GameManager>
 	{
 		MainCamera = Camera.main;
 	}
-
-	public void GameSuccess()
-	{
-		Debug.Log("game success");
-	}
-
-	public void GameFail()
-	{
-		Debug.Log("game fail");
-	}
 }
