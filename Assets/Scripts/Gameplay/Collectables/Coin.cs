@@ -6,5 +6,7 @@ public class Coin : Collectable
 
 	public override void OnCollect(Player collectorPlayer)
 	{
+		//TODO: particles
+		Destroy(gameObject);
 	}
 }

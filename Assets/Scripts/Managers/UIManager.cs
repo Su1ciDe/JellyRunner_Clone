@@ -1,11 +1,11 @@
 ﻿public class UIManager : Singleton<UIManager>
 {
+	public MoneyUI MoneyUI => moneyUI ? moneyUI : moneyUI = GetComponentInChildren<MoneyUI>(true);
+	private MoneyUI moneyUI;
 	public TapToStart TapToStartScreen => tapToStartScreen ? tapToStartScreen : tapToStartScreen = GetComponentInChildren<TapToStart>(true);
 	private TapToStart tapToStartScreen;
-
 	public LevelSuccessScreen LevelSuccessScreen => levelSuccessScreen ? levelSuccessScreen : levelSuccessScreen = GetComponentInChildren<LevelSuccessScreen>(true);
 	private LevelSuccessScreen levelSuccessScreen;
-
 	public LevelFailScreen LevelFailScreen => levelFailScreen ? levelFailScreen : levelFailScreen = GetComponentInChildren<LevelFailScreen>(true);
 	private LevelFailScreen levelFailScreen;
 

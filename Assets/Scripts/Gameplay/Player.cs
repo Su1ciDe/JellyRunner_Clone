@@ -15,7 +15,7 @@ public class Player : Singleton<Player>
 	public PlayerController PlayerController { get; private set; }
 	public BlobController BlobController { get; private set; }
 
-	public event UnityAction OnCollectCoin;
+	public event UnityAction<Coin> OnCollectCoin;
 
 	private bool isInvulnerable;
 	private readonly float invulnerableTime = 1;
@@ -31,10 +31,10 @@ public class Player : Singleton<Player>
 	{
 		if (other.isTrigger && other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Coin coin))
 		{
+			OnCollectCoin?.Invoke(coin);
+
 			AddMoney(coin.MoneyValue);
 			coin.OnCollect(this);
-
-			OnCollectCoin?.Invoke();
 		}
 
 		if (!isInvulnerable && other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Obstacle obstacle))
