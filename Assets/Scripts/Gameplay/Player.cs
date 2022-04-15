@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,7 +16,7 @@ public class Player : Singleton<Player>
 	public PlayerController PlayerController { get; private set; }
 	public BlobController BlobController { get; private set; }
 
-	public event UnityAction<Coin> OnCollectCoin;
+	public event UnityAction<Vector3> OnCollectCoin;
 
 	private bool isInvulnerable;
 	private readonly float invulnerableTime = 1;
@@ -31,9 +32,7 @@ public class Player : Singleton<Player>
 	{
 		if (other.isTrigger && other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Coin coin))
 		{
-			OnCollectCoin?.Invoke(coin);
-
-			AddMoney(coin.MoneyValue);
+			AddMoney(coin.MoneyValue, coin.transform.position);
 			coin.OnCollect(this);
 		}
 
@@ -83,13 +82,18 @@ public class Player : Singleton<Player>
 		isInvulnerable = false;
 	}
 
-	public void AddMoney(int value)
+	public void AddMoney(int value, Vector3 pos = default)
 	{
 		CollectedMoney += value;
 		Money += value;
+		OnCollectCoin?.Invoke(pos);
 	}
 
 	public void FinishLine()
 	{
+		if (!BlobController.IsBigBlob)
+			BlobController.SwitchBlob();
+
+		BlobController.BigBlob.transform.DOScale(0.01f, .1f).SetSpeedBased(true).SetId("FinishShrinking").OnComplete(() => LevelManager.Instance.GameSuccess());
 	}
 }

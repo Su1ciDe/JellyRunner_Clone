@@ -5,10 +5,11 @@ using UnityEngine;
 public class MoneyUI : MonoBehaviour
 {
 	[SerializeField] private TextMeshProUGUI txtMoney;
+	[SerializeField] private Transform imageTarget;
 
 	private void Start()
 	{
-		OnMoneyChanged(null);
+		OnMoneyChanged();
 	}
 
 	private void OnEnable()
@@ -21,13 +22,14 @@ public class MoneyUI : MonoBehaviour
 		Player.Instance.OnCollectCoin -= OnMoneyChanged;
 	}
 
-	private void OnMoneyChanged(Coin coin)
+	private void OnMoneyChanged(Vector3 animPos = default)
 	{
 		Sequence seq = DOTween.Sequence();
-		if (coin)
+		if (!animPos.Equals(default))
 		{
-			var imgCoin = ObjectPooler.Instance.Spawn("Coin", GameManager.MainCamera.WorldToScreenPoint(coin.transform.position), transform);
-			seq.Append(imgCoin.transform.DOMove(txtMoney.transform.position, .5f).SetEase(Ease.InBack));
+			var imgCoin = ObjectPooler.Instance.Spawn("Coin", GameManager.MainCamera.WorldToScreenPoint(animPos), transform);
+			seq.Append(imgCoin.transform.DOMove(imageTarget.position, .5f).SetEase(Ease.InBack));
+			seq.Append(imageTarget.DOPunchScale(Vector3.one * .9f, .2f, 2, .5f));
 			seq.AppendCallback(() => imgCoin.SetActive(false));
 		}
 

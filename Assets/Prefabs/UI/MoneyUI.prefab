@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txtMoney: {fileID: 865105536273963495}
+  imageTarget: {fileID: 3664250358590300186}
 --- !u!1 &865105535710034191
 GameObject:
   m_ObjectHideFlags: 0
