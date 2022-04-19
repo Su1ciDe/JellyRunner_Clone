@@ -1,4 +1,3 @@
-using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,9 +17,6 @@ public class Player : Singleton<Player>
 
 	public static event UnityAction<Vector3> OnCollectCoin;
 
-	private bool isInvulnerable;
-	private readonly float invulnerableTime = 1;
-
 	private void Awake()
 	{
 		PlayerController = GetComponent<PlayerController>();
@@ -34,12 +30,6 @@ public class Player : Singleton<Player>
 		{
 			AddMoney(coin.MoneyValue, coin.transform.position);
 			coin.OnCollect(this);
-		}
-
-		if (!isInvulnerable && other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Obstacle obstacle))
-		{
-			StartCoroutine(Invulnerable());
-			obstacle.React();
 		}
 	}
 
@@ -81,13 +71,6 @@ public class Player : Singleton<Player>
 		BlobController.BigBlob.Anim_SetBool(BlobController.RunAnim, false);
 		foreach (SmallBlob smallBlob in BlobController.SmallBlobs)
 			smallBlob.Anim_SetBool(BlobController.RunAnim, false);
-	}
-
-	private IEnumerator Invulnerable()
-	{
-		isInvulnerable = true;
-		yield return new WaitForSeconds(invulnerableTime);
-		isInvulnerable = false;
 	}
 
 	public void AddMoney(int value, Vector3 pos = default)
