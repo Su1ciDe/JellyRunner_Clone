@@ -4,6 +4,7 @@ using UnityEngine.Events;
 
 public class Player : Singleton<Player>
 {
+	public bool IsFinished { get; set; }
 	public static int Money
 	{
 		get => PlayerPrefs.GetInt("Money", 0);
@@ -82,8 +83,10 @@ public class Player : Singleton<Player>
 
 	public void FinishLine()
 	{
+		IsFinished = true;
+
 		if (!BlobController.IsBigBlob)
-			BlobController.SwitchBlob();
+			BlobController.SwitchBlob(false);
 		BlobController.CanSwitchBlob = false;
 
 		BlobController.BigBlob.transform.DOScale(0.01f, .1f).SetSpeedBased(true).SetId("FinishShrinking").OnComplete(() => LevelManager.Instance.GameSuccess());

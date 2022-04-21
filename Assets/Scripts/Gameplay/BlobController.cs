@@ -106,7 +106,7 @@ public class BlobController : MonoBehaviour
 		SmallBlobs.Add(newSmallBlob);
 	}
 
-	public void SwitchBlob()
+	public void SwitchBlob(bool isAnimated = true)
 	{
 		if (!CanSwitchBlob) return;
 
@@ -116,7 +116,8 @@ public class BlobController : MonoBehaviour
 			BigBlob.gameObject.SetActive(true);
 			BigBlob.Anim_SetBool(RunAnim, true);
 			BigBlob.transform.DOComplete();
-			BigBlob.transform.DOScale(Vector3.zero, .5f).SetEase(Ease.OutExpo).From().OnComplete(() => BigBlob.transform.localScale = Vector3.one);
+			if (isAnimated)
+				BigBlob.transform.DOScale(Vector3.zero, .5f).SetEase(Ease.OutExpo).From().OnComplete(() => BigBlob.transform.localScale = Vector3.one);
 			foreach (SmallBlob smallBlob in SmallBlobs)
 			{
 				smallBlob.transform.DOComplete();

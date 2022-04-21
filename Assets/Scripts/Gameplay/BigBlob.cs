@@ -20,15 +20,16 @@ public class BigBlob : Blob
 
 	public void ChangeSize(int size, bool isAnimated = true)
 	{
+		var model = transform.GetChild(0);
 		Size = size / 2f;
 		if (isAnimated)
 		{
-			transform.DOComplete();
-			transform.DOScale(Size, .5f).SetEase(Ease.OutElastic);
+			model.DOComplete();
+			model.DOScale(Size, .5f).SetEase(Ease.OutElastic);
 		}
 		else
 		{
-			transform.localScale = Size * Vector3.one;
+			model.localScale = Size * Vector3.one;
 		}
 	}
 }
