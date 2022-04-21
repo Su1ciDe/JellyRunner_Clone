@@ -63,6 +63,7 @@ public class BlobController : MonoBehaviour
 
 	public void RemoveBlob(SmallBlob specificBlob = null)
 	{
+		BlobCount--;
 		BigBlob.ChangeSize(BlobCount);
 
 		if (specificBlob)
@@ -81,6 +82,7 @@ public class BlobController : MonoBehaviour
 		{
 			if (BlobCount.Equals(1))
 			{
+				SwitchBlob();
 				CanSwitchBlob = false;
 			}
 		}
@@ -98,8 +100,9 @@ public class BlobController : MonoBehaviour
 	private void AddSmallBlob(bool isActive = true)
 	{
 		var newSmallBlob = Instantiate(SmallBlobs[0], SmallBlobs[0].transform.parent);
-		newSmallBlob.Anim_SetBool(RunAnim, isActive);
 		newSmallBlob.gameObject.SetActive(isActive);
+		if (isActive)
+			newSmallBlob.Anim_SetBool(RunAnim, true);
 		SmallBlobs.Add(newSmallBlob);
 	}
 
@@ -112,20 +115,29 @@ public class BlobController : MonoBehaviour
 		{
 			BigBlob.gameObject.SetActive(true);
 			BigBlob.Anim_SetBool(RunAnim, true);
-
+			BigBlob.transform.DOComplete();
+			BigBlob.transform.DOScale(Vector3.zero, .5f).SetEase(Ease.OutExpo).From().OnComplete(() => BigBlob.transform.localScale = Vector3.one);
 			foreach (SmallBlob smallBlob in SmallBlobs)
 			{
-				smallBlob.Anim_SetBool(RunAnim, false);
-				smallBlob.gameObject.SetActive(false);
+				smallBlob.transform.DOComplete();
+				smallBlob.transform.DOLocalMove(Vector3.zero, .5f).SetEase(Ease.OutExpo).OnComplete(() =>
+				{
+					smallBlob.Anim_SetBool(RunAnim, false);
+					smallBlob.gameObject.SetActive(false);
+				});
 			}
 		}
 		else
 		{
+			BigBlob.transform.DOComplete();
+
 			BigBlob.Anim_SetBool(RunAnim, false);
 			BigBlob.gameObject.SetActive(false);
 
 			foreach (SmallBlob smallBlob in SmallBlobs)
 			{
+				smallBlob.transform.DOComplete();
+
 				smallBlob.gameObject.SetActive(true);
 				smallBlob.Anim_SetBool(RunAnim, true);
 			}

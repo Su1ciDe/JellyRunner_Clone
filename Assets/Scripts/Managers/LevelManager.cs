@@ -24,18 +24,15 @@ public class LevelManager : Singleton<LevelManager>
 
 	public void GameSuccess()
 	{
-		Debug.Log("game success");
 		CurrentLevel++;
 		OnLevelSuccess?.Invoke();
 	}
 
 	public void GameFail()
 	{
-		Debug.Log("game fail");
 		OnLevelFail?.Invoke();
 	}
 
-	[ContextMenu("asd")]
 	public void LoadLevel()
 	{
 		SceneManager.LoadScene(LevelSO.Scenes[CurrentLevelIndex].name);
