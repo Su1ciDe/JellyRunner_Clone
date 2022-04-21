@@ -27,12 +27,12 @@ public class Fan : Obstacle
 	{
 	}
 
-	protected override void ReactToSmallBlob()
+	protected override void ReactToSmallBlob(SmallBlob smallBlob)
 	{
 		// Fly
 		Player.Instance.PlayerMovement.Rb.AddForce(upForce * Vector3.up, ForceMode.Impulse);
-		foreach (SmallBlob smallBlob in Player.Instance.BlobController.SmallBlobs)
-			smallBlob.Anim_SetTrigger(frontFlipAnim);
+		foreach (SmallBlob _smallBlob in Player.Instance.BlobController.SmallBlobs)
+			_smallBlob.Anim_SetTrigger(frontFlipAnim);
 	}
 
 	private void OnDestroy()

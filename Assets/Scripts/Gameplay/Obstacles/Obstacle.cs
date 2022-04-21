@@ -6,34 +6,32 @@ public abstract class Obstacle : MonoBehaviour
 
 	public bool DoesDamageToBigBlob;
 	public bool DoesDamageToSmallBlob;
-	public int Damage = 1;
 
-	public virtual void React()
+	public virtual void React(SmallBlob smallBlob)
 	{
 		if (Player.Instance.BlobController.IsBigBlob)
 		{
 			ReactToBigBlob();
 			if (DoesDamageToBigBlob)
-				Player.Instance.BlobController.RemoveBlob(Damage);
+				Player.Instance.BlobController.RemoveBlob();
 		}
 		else
 		{
-			ReactToSmallBlob();
+			ReactToSmallBlob(smallBlob);
 			if (DoesDamageToSmallBlob)
-				Player.Instance.BlobController.RemoveBlob(Damage);
+				Player.Instance.BlobController.RemoveBlob(smallBlob);
 		}
-
-		HasReacted = true;
 	}
 
 	protected abstract void ReactToBigBlob();
-	protected abstract void ReactToSmallBlob();
+	protected abstract void ReactToSmallBlob(SmallBlob smallBlob);
 
 	private void OnTriggerStay(Collider other)
 	{
-		if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Player player) && !HasReacted)
+		if (other.isTrigger && other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Blob blob) && !HasReacted)
 		{
-			React();
+			HasReacted = true;
+			React(blob.TryGetComponent(out SmallBlob smallBlob) ? smallBlob : null);
 		}
 	}
 }

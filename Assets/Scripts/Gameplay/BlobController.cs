@@ -61,13 +61,16 @@ public class BlobController : MonoBehaviour
 			CanSwitchBlob = true;
 	}
 
-	public void RemoveBlob(int count = 1)
+	public void RemoveBlob(SmallBlob specificBlob = null)
 	{
-		count = count > BlobCount ? BlobCount : count;
-		BlobCount -= count;
-
 		BigBlob.ChangeSize(BlobCount);
-		for (int i = 0; i < count; i++)
+
+		if (specificBlob)
+		{
+			SmallBlobs.Remove(specificBlob);
+			Destroy(specificBlob.gameObject);
+		}
+		else
 		{
 			var smallBlob = SmallBlobs[SmallBlobs.Count - 1];
 			SmallBlobs.Remove(smallBlob);
@@ -95,8 +98,8 @@ public class BlobController : MonoBehaviour
 	private void AddSmallBlob(bool isActive = true)
 	{
 		var newSmallBlob = Instantiate(SmallBlobs[0], SmallBlobs[0].transform.parent);
-		newSmallBlob.gameObject.SetActive(isActive);
 		newSmallBlob.Anim_SetBool(RunAnim, isActive);
+		newSmallBlob.gameObject.SetActive(isActive);
 		SmallBlobs.Add(newSmallBlob);
 	}
 
@@ -112,8 +115,8 @@ public class BlobController : MonoBehaviour
 
 			foreach (SmallBlob smallBlob in SmallBlobs)
 			{
-				smallBlob.gameObject.SetActive(false);
 				smallBlob.Anim_SetBool(RunAnim, false);
+				smallBlob.gameObject.SetActive(false);
 			}
 		}
 		else

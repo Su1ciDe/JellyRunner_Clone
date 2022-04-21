@@ -3432,10 +3432,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4799250827197515506, guid: 9c987f175576fd24daf215282e4f0c4f, type: 3}
-      propertyPath: m_Mass
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 4799250827197515513, guid: 9c987f175576fd24daf215282e4f0c4f, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3833,6 +3829,10 @@ PrefabInstance:
     - target: {fileID: 6798615058489164305, guid: 1cd91ab4ebc308649947be039b14160d, type: 3}
       propertyPath: m_Name
       value: FanSide
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798615058489164305, guid: 1cd91ab4ebc308649947be039b14160d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6798615058489164332, guid: 1cd91ab4ebc308649947be039b14160d, type: 3}
       propertyPath: m_RootOrder

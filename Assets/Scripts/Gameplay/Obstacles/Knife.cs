@@ -6,7 +6,7 @@ public class Knife : Obstacle
 	{
 	}
 
-	protected override void ReactToSmallBlob()
+	protected override void ReactToSmallBlob(SmallBlob smallBlob)
 	{
 	}
 }

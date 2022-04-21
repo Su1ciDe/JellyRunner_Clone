@@ -26,8 +26,10 @@ public class Wall : Obstacle
 		}
 	}
 
-	protected override void ReactToSmallBlob()
+	protected override void ReactToSmallBlob(SmallBlob smallBlob)
 	{
-		Player.Instance.BlobController.RemoveBlob(Player.Instance.BlobController.BlobCount);
+		LevelManager.Instance.GameFail();
+		foreach (SmallBlob _smallBlob in Player.Instance.BlobController.SmallBlobs)
+			_smallBlob.gameObject.SetActive(false);
 	}
 }

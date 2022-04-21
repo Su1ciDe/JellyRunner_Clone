@@ -19,4 +19,9 @@ public class Coin : Collectable
 		particle.Play();
 		Destroy(gameObject);
 	}
+
+	private void OnDestroy()
+	{
+		coinT.DOKill();
+	}
 }

@@ -16,7 +16,7 @@ public class Pendulum : Obstacle
 	{
 	}
 
-	protected override void ReactToSmallBlob()
+	protected override void ReactToSmallBlob(SmallBlob smallBlob)
 	{
 	}
 

@@ -10,7 +10,7 @@ public class Grate : Obstacle
 		grateCollider.enabled = true;
 	}
 
-	protected override void ReactToSmallBlob()
+	protected override void ReactToSmallBlob(SmallBlob smallBlob)
 	{
 		grateCollider.enabled = false;
 	}
