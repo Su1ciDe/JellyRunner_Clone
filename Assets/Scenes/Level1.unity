@@ -3420,10 +3420,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4799250827197515506, guid: 9c987f175576fd24daf215282e4f0c4f, type: 3}
-      propertyPath: m_Mass
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 4799250827197515513, guid: 9c987f175576fd24daf215282e4f0c4f, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3442,7 +3438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4799250827197515519, guid: 9c987f175576fd24daf215282e4f0c4f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 99.58
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4799250827197515519, guid: 9c987f175576fd24daf215282e4f0c4f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3816,7 +3812,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6798615058489164305, guid: 1cd91ab4ebc308649947be039b14160d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798615058489164306, guid: 1cd91ab4ebc308649947be039b14160d, type: 3}
+      propertyPath: force
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6798615058489164332, guid: 1cd91ab4ebc308649947be039b14160d, type: 3}
       propertyPath: m_RootOrder
@@ -3897,7 +3897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7247562103963030167, guid: 4b6ea44cb14db3242a2bd37a4e3f1da5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 80.58
+      value: -19
       objectReference: {fileID: 0}
     - target: {fileID: 7247562103963030167, guid: 4b6ea44cb14db3242a2bd37a4e3f1da5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3939,14 +3939,6 @@ PrefabInstance:
     - target: {fileID: 7476682948532688684, guid: 458d43c19e452fb4d8a6c498886e8623, type: 3}
       propertyPath: m_Name
       value: Fan
-      objectReference: {fileID: 0}
-    - target: {fileID: 7476682948532688685, guid: 458d43c19e452fb4d8a6c498886e8623, type: 3}
-      propertyPath: force
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7476682948532688685, guid: 458d43c19e452fb4d8a6c498886e8623, type: 3}
-      propertyPath: upForce
-      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 7476682948532688723, guid: 458d43c19e452fb4d8a6c498886e8623, type: 3}
       propertyPath: m_RootOrder
@@ -4167,10 +4159,6 @@ PrefabInstance:
     - target: {fileID: 3129448907630046700, guid: 2c18325b051dbc3489e675799e22ab27, type: 3}
       propertyPath: m_Name
       value: Lava
-      objectReference: {fileID: 0}
-    - target: {fileID: 3129448907630046700, guid: 2c18325b051dbc3489e675799e22ab27, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8713417087124507593, guid: 2c18325b051dbc3489e675799e22ab27, type: 3}
       propertyPath: m_RootOrder

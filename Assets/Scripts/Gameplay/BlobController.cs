@@ -103,6 +103,7 @@ public class BlobController : MonoBehaviour
 		newSmallBlob.gameObject.SetActive(isActive);
 		if (isActive)
 			newSmallBlob.Anim_SetBool(RunAnim, true);
+		newSmallBlob.IsInStack = true;
 		SmallBlobs.Add(newSmallBlob);
 	}
 
@@ -115,6 +116,7 @@ public class BlobController : MonoBehaviour
 		{
 			BigBlob.gameObject.SetActive(true);
 			BigBlob.Anim_SetBool(RunAnim, true);
+			BigBlob.transform.localPosition = Vector3.zero;
 			BigBlob.transform.DOComplete();
 			if (isAnimated)
 				BigBlob.transform.DOScale(Vector3.zero, .5f).SetEase(Ease.OutExpo).From().OnComplete(() => BigBlob.transform.localScale = Vector3.one);

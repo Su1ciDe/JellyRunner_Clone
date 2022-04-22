@@ -4,7 +4,6 @@ using UnityEngine;
 public class BigBlob : Blob
 {
 	public float Size { get; private set; }
-	public Rigidbody Rb { get; private set; }
 
 	private void Awake()
 	{
@@ -14,6 +13,7 @@ public class BigBlob : Blob
 	private void FixedUpdate()
 	{
 		if (!gameObject.activeSelf) return;
+		if (!IsInStack) return;
 		Rb.velocity = Player.Instance.PlayerMovement.Rb.velocity;
 	}
 

@@ -171,8 +171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DoesDamageToBigBlob: 0
   DoesDamageToSmallBlob: 0
-  Damage: 1
-  upForce: 175
+  force: 27
+  secondForceTime: 2
   movingPart: {fileID: 6937860071519824058}
   rotationTime: 1
 --- !u!1001 &1038961338339616373

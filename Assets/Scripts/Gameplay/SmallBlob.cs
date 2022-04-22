@@ -2,8 +2,6 @@
 
 public class SmallBlob : Blob
 {
-	public Rigidbody Rb { get; private set; }
-
 	private void Awake()
 	{
 		Rb = GetComponent<Rigidbody>();
@@ -12,6 +10,7 @@ public class SmallBlob : Blob
 	private void FixedUpdate()
 	{
 		if (!gameObject.activeSelf) return;
+		if (!IsInStack) return;
 		Rb.velocity = Player.Instance.PlayerMovement.Rb.velocity;
 	}
 }

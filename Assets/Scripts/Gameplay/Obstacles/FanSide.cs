@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class FanSide : Obstacle
@@ -27,8 +28,17 @@ public class FanSide : Obstacle
 	protected override void ReactToSmallBlob(SmallBlob smallBlob)
 	{
 		// Fly
-		Player.Instance.PlayerMovement.Rb.AddForce(force * transform.right, ForceMode.Impulse);
-		smallBlob.transform.DOLocalJump(15 * transform.right, 1, 1, .5f).OnComplete(() => Player.Instance.BlobController.RemoveBlob(smallBlob));
+		Player.Instance.PlayerMovement.Rb.AddForce(force * transform.right, ForceMode.VelocityChange);
+		smallBlob.IsInStack = false;
+		smallBlob.Rb.AddForce(new Vector3(force * 2, force , 0), ForceMode.VelocityChange);
+		smallBlob.Rb.AddTorque(new Vector3(force, force, force));
+		StartCoroutine(KillSmallBlob(smallBlob));
+	}
+
+	private IEnumerator KillSmallBlob(SmallBlob smallBlob)
+	{
+		yield return new WaitForSeconds(1);
+		Player.Instance.BlobController.RemoveBlob(smallBlob);
 	}
 
 	private void OnDestroy()

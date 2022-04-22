@@ -46,7 +46,7 @@ public class Finish : MonoBehaviour
 
 		while (trail.emitting)
 		{
-			trail.transform.position = Player.Instance.transform.position + .01f * Vector3.up;
+			trail.transform.position = Player.Instance.transform.position + .02f * Vector3.up;
 
 			yield return wait;
 		}
