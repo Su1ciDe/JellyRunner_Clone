@@ -163,6 +163,11 @@ public class BlobController : MonoBehaviour
 			Vector3 spawnPos = spawnDir * radius;
 
 			SmallBlobs[i].transform.localPosition = spawnPos;
+
+			// In order to stay in lane
+			var pos = SmallBlobs[i].transform.position;
+			pos.x = Mathf.Clamp(pos.x, -9f, 9f);
+			SmallBlobs[i].transform.position = pos;
 		}
 	}
 }

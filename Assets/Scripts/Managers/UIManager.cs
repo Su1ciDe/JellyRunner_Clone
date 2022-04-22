@@ -11,7 +11,7 @@
 
 	private void Awake()
 	{
-		TapToStartScreen.SetActive(true);
+		TapToStartScreen.SetActiveUI(true);
 	}
 
 	private void OnEnable()

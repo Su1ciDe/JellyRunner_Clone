@@ -15,7 +15,7 @@ public class MultiplierBlock : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.isTrigger && other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Player player))
+		if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Player player))
 		{
 			DOTween.Kill("FinishShrinking");
 			player.AddMoney(player.CollectedMoney * multiplier, player.transform.position);

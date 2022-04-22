@@ -52,6 +52,7 @@ public class Player : Singleton<Player>
 	{
 		PlayerController.CanPlay = true;
 		PlayerMovement.CanMove = true;
+		BlobController.BigBlob.Anim_SetBool(BlobController.RunAnim, true);
 	}
 
 	private void OnLevelSuccess()
@@ -81,7 +82,7 @@ public class Player : Singleton<Player>
 		OnCollectCoin?.Invoke(pos);
 	}
 
-	public void FinishLine()
+	public void PassFinishLine()
 	{
 		IsFinished = true;
 
@@ -89,6 +90,6 @@ public class Player : Singleton<Player>
 			BlobController.SwitchBlob(false);
 		BlobController.CanSwitchBlob = false;
 
-		BlobController.BigBlob.transform.DOScale(0.01f, BlobController.BlobCount).SetId("FinishShrinking").OnComplete(() => LevelManager.Instance.GameSuccess());
+		BlobController.BigBlob.transform.DOScale(0.01f, BlobController.BlobCount * 1.5f).SetId("FinishShrinking").OnComplete(() => LevelManager.Instance.GameSuccess());
 	}
 }

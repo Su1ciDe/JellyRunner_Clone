@@ -25,13 +25,15 @@ public class Finish : MonoBehaviour
 	{
 		if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out Player player) && !player.IsFinished)
 		{
-			player.FinishLine();
+			player.PassFinishLine();
 			StartDrawTrail();
 		}
 	}
 
 	private void StartDrawTrail()
 	{
+		trail.transform.position = Player.Instance.transform.position + .02f * Vector3.up;
+		trail.emitting = true;
 		drawTrail = StartCoroutine(DrawTrail());
 	}
 

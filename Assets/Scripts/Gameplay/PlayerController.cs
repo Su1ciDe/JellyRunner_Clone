@@ -8,37 +8,39 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private float dragMultiplier;
 	private float previousMousePosX;
 	private float mouseDelta;
+	
+	// [SerializeField] private float holdingTimeThreshold = .1f;
+	// private float holdingTime;
 
-	[Space]
-	[SerializeField] private float holdingTimeThreshold = .1f;
-	private float holdingTime;
-
-	private PlayerMovement movement => Player.Instance.PlayerMovement;
+	private Player player => Player.Instance;
+	private PlayerMovement movement => player.PlayerMovement;
 
 	private void Update()
 	{
 		if (!CanPlay) return;
-		if (Input.GetMouseButton(0))
-		{
-			if (isHolding)
-				holdingTime += Time.deltaTime;
-		}
+		// if (Input.GetMouseButton(0))
+		// {
+		// 	if (isHolding)
+		// 		holdingTime += Time.deltaTime;
+		// }
 
 		if (Input.GetMouseButtonDown(0))
 		{
 			isHolding = true;
 			previousMousePosX = Input.mousePosition.x;
+
+			if (!player.IsFinished)
+				player.BlobController.SwitchBlob();
 		}
 
 		if (Input.GetMouseButtonUp(0))
 		{
 			isHolding = false;
 
-			// Tap
-			if (holdingTime < holdingTimeThreshold)
-				Player.Instance.BlobController.SwitchBlob();
+			if (!player.IsFinished)
+				player.BlobController.SwitchBlob();
 
-			holdingTime = 0;
+			// holdingTime = 0;
 
 			// Stop left/right movement on release
 			Vector3 velocity = movement.Rb.velocity;
@@ -54,8 +56,8 @@ public class PlayerController : MonoBehaviour
 
 	private void Drag()
 	{
-		if(!CanPlay) return;
-		if (!isHolding || holdingTime < holdingTimeThreshold / 2f) return;
+		if (!CanPlay) return;
+		if (!isHolding) return;
 
 		mouseDelta = Input.mousePosition.x - previousMousePosX;
 		Vector3 velocity = movement.Rb.velocity;
