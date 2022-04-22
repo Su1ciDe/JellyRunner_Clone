@@ -64,7 +64,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DoesDamageToBigBlob: 1
   DoesDamageToSmallBlob: 1
-  Damage: 1
 --- !u!1 &6061545776657618922
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,8 +106,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 19, y: 3, z: 19}
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Size: {x: 19, y: 2.838667, z: 16.999512}
+  m_Center: {x: 0, y: 0.41933355, z: 0}
 --- !u!1 &8145861897862410022
 GameObject:
   m_ObjectHideFlags: 0

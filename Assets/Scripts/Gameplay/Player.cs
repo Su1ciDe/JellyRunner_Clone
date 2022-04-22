@@ -89,6 +89,6 @@ public class Player : Singleton<Player>
 			BlobController.SwitchBlob(false);
 		BlobController.CanSwitchBlob = false;
 
-		BlobController.BigBlob.transform.DOScale(0.01f, .1f).SetSpeedBased(true).SetId("FinishShrinking").OnComplete(() => LevelManager.Instance.GameSuccess());
+		BlobController.BigBlob.transform.DOScale(0.01f, BlobController.BlobCount).SetId("FinishShrinking").OnComplete(() => LevelManager.Instance.GameSuccess());
 	}
 }

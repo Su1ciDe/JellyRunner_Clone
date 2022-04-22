@@ -1,10 +1,12 @@
-﻿using DG.Tweening;
+﻿using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class Fan : Obstacle
 {
 	[Space]
-	[SerializeField] private float upForce = 100;
+	[SerializeField] private float force = 250;
+	[SerializeField] private float secondForceTime = 2;
 
 	[Header("Motion")]
 	[SerializeField] private Transform movingPart;
@@ -29,8 +31,14 @@ public class Fan : Obstacle
 
 	protected override void ReactToSmallBlob(SmallBlob smallBlob)
 	{
-		// Fly
-		Player.Instance.PlayerMovement.Rb.AddForce(upForce * Vector3.up, ForceMode.Impulse);
+		StartCoroutine(Fly(0));
+		StartCoroutine(Fly(secondForceTime));
+	}
+
+	private IEnumerator Fly(float wait)
+	{
+		yield return new WaitForSeconds(wait);
+		Player.Instance.PlayerMovement.Rb.AddForce(new Vector3(0, force, force * 2f), ForceMode.VelocityChange);
 		foreach (SmallBlob _smallBlob in Player.Instance.BlobController.SmallBlobs)
 			_smallBlob.Anim_SetTrigger(frontFlipAnim);
 	}
